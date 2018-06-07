@@ -62,12 +62,64 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.8, 0.82, 1);
     }
 
   </style>
 
   <script>
 
+    // const secondHand = document.querySelector('.second-hand');
+    // const minHand = document.querySelector('.min-hand');
+    // const hourHand = document.querySelector('.hour-hand');
+    //
+    // let secondHandAngle = 90;
+    // let minHandAngle = 90;
+    // let hourHandAngle = 90;
+    //
+    // function handChanger(unit) {
+    //   if (unit === 's') {
+    //     secondHand.style.transform = 'rotate('+secondHandAngle+'deg)';
+    //     secondHandAngle += 6;
+    //   } else if (unit === 'm') {
+    //     minHand.style.transform = 'rotate('+minHandAngle+'deg)';
+    //     minHandAngle += 6;
+    //   } else if (unit === 'h') {
+    //     hourHand.style.transform = 'rotate('+hourHandAngle+'deg)';
+    //     hourHandAngle += 6;
+    //   }
+    // }
+    //
+    // setInterval(function() { handChanger('s') }, 1000);
+    // setInterval(function() { handChanger('m') }, 60000);
+    // setInterval(function() { handChanger('h') }, 3600000);
+
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
+
+    function setDate() {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const secondsDegree = (seconds / 60) * 360 + 90;
+      secondHand.style.transform = `rotate(${secondsDegree}deg)`;
+      console.log(seconds);
+
+      const minutes = now.getMinutes();
+      const minutesDegree = (minutes / 60) * 360 + 90;
+      minuteHand.style.transform = `rotate(${minutesDegree}deg)`;
+      console.log(minutes);
+
+      const hours = now.getHours();
+      const hoursDegree = (hours / 12) * 360 + 90;
+      hourHand.style.transform = `rotate(${hoursDegree}deg)`;
+      console.log(hours);
+    }
+
+    setInterval(setDate,1000);
 
   </script>
 </body>
