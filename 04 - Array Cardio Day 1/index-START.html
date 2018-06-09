@@ -31,28 +31,52 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const oldies = inventors.filter(inventor => (inventor.year>1499 && inventor.year<1600));
+    console.table(oldies); // console.table... cool!
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`)
+    console.log(fullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const inventorsSorted = inventors.sort((a,b) => a.year - b.year);
+    console.log(inventorsSorted);
 
-    // Array.prototype.reduce()
+    // Array.prototype.reduce()   ** THIS IS A TRICKY ONE FOR ME
     // 4. How many years did all the inventors live?
+    const totalYears = inventors.reduce((total, inventor) => total + inventor.passed - inventor.year, 0);
+    console.log(totalYears);
 
     // 5. Sort the inventors by years lived
+    const inventorsLifespanSorted = inventors.sort((a,b) => (a.passed - a.year) - (b.passed - b.year));
+    console.log(inventorsLifespanSorted);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris     ** NOT SURE WHERE TO BEGIN WITH THIS...
 
 
     // 7. sort Exercise
-    // Sort the people alphabetically by last name
+    // Sort the people alphabetically by last name     ** NOT EXACTLY SURE WHAT TO DO HERE EITHER...
+    const inventorsAlphabetSorted = inventors.sort();
+    console.log(inventorsAlphabetSorted);
 
     // 8. Reduce Exercise
-    // Sum up the instances of each of these
+    // Sum up the instances of each of these     ** this is confusing me right now...
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const frequency = data.reduce((tally, currentWord) => {
+      if (!tally) {
+        currentWord = 1;
+        return currentWord;
+      } else if (!tally.currentWord){
+        tally.currentWord = 1;
+      } else {
+        tally.currentWord++;
+      }
+      return tally;
+    }, {});
+    console.log(frequency);
 
   </script>
 </body>
