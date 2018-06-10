@@ -42,7 +42,7 @@
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
     const inventorsSorted = inventors.sort((a,b) => a.year - b.year);
-    console.log(inventorsSorted);
+    console.table(inventorsSorted);
 
     // Array.prototype.reduce()   ** THIS IS A TRICKY ONE FOR ME
     // 4. How many years did all the inventors live?
@@ -55,28 +55,35 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris     ** NOT SURE WHERE TO BEGIN WITH THIS...
-
+    // const links = Array.from(document.querySelectorAll('.mw-category a')); // Array.from is new for me - could also use ES6 spread
+    // const de = links
+    //             .map(link => link.textContent)
+    //             .filter(streetName => streetName.includes('de')); //.includes; also new for me
+    //
+    // console.log(de);
 
     // 7. sort Exercise
-    // Sort the people alphabetically by last name     ** NOT EXACTLY SURE WHAT TO DO HERE EITHER...
-    const inventorsAlphabetSorted = inventors.sort();
-    console.log(inventorsAlphabetSorted);
+    // Sort the people alphabetically by last name ** NOT EXACTLY SURE WHAT TO DO HERE EITHER.. sort the PEOPLE, for one thing
+    const peopleAlphabetSorted = people.sort((a, b) => {
+      const [aLast, aFirst] = a.split(', ');
+      const [bLast, bFirst] = b.split(', ');
+      return aLast > bLast ? 1 : -1;
+    });
+    console.log(peopleAlphabetSorted)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these     ** this is confusing me right now...
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-    const frequency = data.reduce((tally, currentWord) => {
-      if (!tally) {
-        currentWord = 1;
-        return currentWord;
-      } else if (!tally.currentWord){
-        tally.currentWord = 1;
-      } else {
-        tally.currentWord++;
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+    const transportation = data.reduce((tally, currentWord) => {
+      if (!tally[currentWord]) {
+        tally[currentWord] = 0;
       }
+      tally[currentWord]++;
       return tally;
     }, {});
-    console.log(frequency);
+    console.log(transportation);
+
+    // using dot notation was messing me up here -_- cannot use variables with dot notation...
 
   </script>
 </body>
