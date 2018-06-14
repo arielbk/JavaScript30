@@ -18,28 +18,73 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
+    console.log('hello, I am a %s, and an interpolated one at that!', 'string');
 
     // Styled
+    console.log('%c I am some great text ✌️', 'font-size: 4em; color: #00f');
 
     // warning!
+    console.warn('uh oh...');
 
     // Error :|
+    console.error('bad bad bad ');
 
     // Info
+    console.info('In 2011 the number of people that die from obesity surpassed the number of people that die from starvation 👾');
 
     // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('yoyoyo'), 'that is simply untrue!');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+
+    console.clear();
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`); // this is where the magic happens
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`); // end the group with the same string
+    })
 
     // counting
+    console.groupCollapsed('yesyo');
+    console.count('yes');
+    console.count('yo');
+    console.count('yo');
+    console.count('yes');
+    console.count('yes');
+    console.count('yes');
+    console.count('yes');
+    console.count('yo');
+    console.count('yes');
+    console.count('yes');
+    console.count('yo');
+    console.count('yes');
+    console.count('yes');
+    console.groupEnd('yesyo');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/arielbk')
+      .then(res => res.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      })
+
+
+      console.table(dogs);
 
   </script>
 </body>
