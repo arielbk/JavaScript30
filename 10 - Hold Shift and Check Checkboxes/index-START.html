@@ -98,7 +98,84 @@
     </div>
   </div>
 
+<!--<script>
+  const boxes = document.querySelectorAll('input');
+  let boxesArr = [...boxes];
+  // document.addEventListener('keydown', selectMultiple);
+  // function selectMultiple(e) {
+  //   if (e.key === 'Shift') console.log(e.key);
+  // }
+
+  boxes.forEach(box => {
+    box.addEventListener('click', boxClick);
+  });
+
+  // boxesArr.some(box => box != e.target && box.checked)
+
+  function boxClick(e) {
+    let oldIndex = boxesArr.indexOf(e.target);
+    boxesArr[oldIndex].checked = true;
+
+    let anotherIndex = -1;
+    for (let i = 0; i < boxes.length; i++) {
+      if (boxes[i] != e.target && boxes[i].checked) {
+        anotherIndex = boxesArr.indexOf(boxes[i])
+      }
+    }
+
+    console.log(oldIndex, anotherIndex)
+  }
+
+</script> This was kind of a failure - but I learnt a lot hehe
+-->
+<!-- <script>
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  let lastChecked;
+  
+  function handleCheck(e) {
+    // check if shift key is pressed
+    // and check if CHECKING the box
+    let inBetween = false;
+    if (e.shiftKey && this.checked) {
+      // loop over every checkbox
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
+        }
+        if (inBetween) {
+          checkbox.checked = true;
+      }
+      });
+    }
+    lastChecked = this; // ooh nice use of this...
+  }
+
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+</script> That was really cool - let me try to code it up myself now -->
+
 <script>
+  const boxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  let lastChecked;
+
+  function handleCheck(e) {
+    let inBetween = false; // flag for boxes in between
+    // check if shift key is pressed and that user is 'checking' the box
+    if (e.shiftKey && this.checked) {
+      boxes.forEach(box => {
+        if (box === this || box === lastChecked) {
+          inBetween = !inBetween;
+        }
+        if (inBetween) {
+          box.checked = true;
+        }
+      });
+    } 
+    lastChecked = this;
+  }
+
+  boxes.forEach(box => box.addEventListener('click', handleCheck));
 </script>
+<!-- very cool -->
+
 </body>
 </html>
