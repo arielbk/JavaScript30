@@ -43,10 +43,41 @@
 
   <ul id="bands"></ul>
 
-<script>
+<!-- <script> // MY SOLUTION!!
+const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const bandsListUL = document.querySelector('#bands');
+
+const bandsSplit =
+  bands
+  .map(band => band.split(' '))
+  .sort((a,b) => {
+    let aIndex = 0;
+    let bIndex = 0;
+    while (a[aIndex] === "A" || a[aIndex] === "An" || a[aIndex] === "The") {
+      aIndex++;
+    };
+    while (b[bIndex] === "A" || b[bIndex] === "An" || b[bIndex] === "The") {
+      bIndex++;
+    };
+    if (b[bIndex] > a[aIndex]) { return -1 } else { return 1 };
+  })
+  .map(band => {
+    const bandLi = `<li>${band.join(' ')}</li>`;
+    bandsListUL.innerHTML += bandLi;
+  });
+
+</script> -->
+
+<script> // CODING ALONG WITH WES' SOLUTION!
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const strip = bandName =>bandName.replace(/^(a |the |an )/i, '').trim(); // .replace and .trim with a regex - cool!
+const sortedBands = bands.sort((a,b) => strip(a) > strip(b) ? 1 : -1);
 
+document.querySelector('#bands').innerHTML = 
+  sortedBands
+  .map(band => `<li>${band}</li>`)
+  .join('');
 </script>
 
 </body>
