@@ -171,17 +171,53 @@
     <li data-time="6:03">
       Video 55
     </li>
-    <li data-time="12:39">
+    <li data-time="11:49">
       Video 56
     </li>
     <li data-time="1:56">
       Video 57
     </li>
-    <li data-time="4:04">
+    <li data-time="4:08">
       Video 58
     </li>
   </ul>
 <script>
+
+  const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+
+  // const seconds = timeNodes
+  //   .map(node => node.dataset.time)
+  //   .map(timeCode => {
+  //     const [mins, secs] = timeCode.split(':').map(parseFloat); // nice! passing this functions quickly through map
+  //     return (mins * 60) + secs;
+  //   })
+  //   .reduce((total, vidSeconds) => total + vidSeconds);
+
+  // let secondsLeft = seconds;
+  // const hours = Math.floor(secondsLeft / 3600);
+  // secondsLeft = secondsLeft % 3600;
+
+  // const mins = Math.floor(secondsLeft / 60);
+  // secondsLeft = secondsLeft % 60;
+
+  // console.log(hours, mins, secondsLeft);
+
+  // HERE I GO - TRYING TO REDUCE IT INTO A SINGLE FUNCTION
+
+  const totalSecs = timeNodes
+    .reduce((total, node) => {
+      timeString = node.dataset.time;
+      const [mins, secs] = timeString.split(':').map(parseFloat);
+      videoSecs = mins * 60 + secs;
+      return total + videoSecs;
+    }, 0);
+
+  const hours = Math.floor(totalSecs/(60*60));
+  const mins = Math.floor(totalSecs/60) - 60*hours;
+  const secs = totalSecs % 60;
+
+  console.log('time', hours, mins, secs);
+
 </script>
 </body>
 </html>
