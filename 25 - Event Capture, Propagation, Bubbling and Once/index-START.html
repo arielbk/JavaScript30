@@ -39,7 +39,18 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation();
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true, // a relatively new function - event runs once and then is unbound
+                // a perfect use case is a shopping cart system, to disallow multiple submissions
+  }));
 </script>
 </body>
 </html>
